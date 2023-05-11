@@ -1,0 +1,37 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <br>
+        <h1>LOGIN</h1>
+        <br>
+        <br>
+
+        <div>
+            <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+                <input type="text" placeholder="Username" name="username">
+                <br>
+                <br>
+                <input type="password" placeholder="Senha" name="password">
+                <br>
+                <br>
+                <input type="submit" value="Logar">
+                <br>
+                <br>
+                <a href="{% url 'cadastro' %}">Cadastrar-se</a>
+            </form>
+        </div>
+        
+
+
+    </body>
+
+</html>
+
+
+
+
+
+

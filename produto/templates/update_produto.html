@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>INDEX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="text-align:center"><b>EDITAR PRODUTO</b></h1>
+    </div>
+    <br>
+
+    <div class="container">
+        <form action="{% url 'editar' produto.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Descrição</label>
+                <input name="descricao" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{produto.descricao}}">
+                <!--<small id="emailHelp" class="form-text text-muted">Descrição</small>-->
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Valor</label>
+                <input name="valor" type="number" class="form-control" id="exampleInputPassword1" value="{{produto.valor}}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Tipo Produto</label>
+                
+                <select name="tipoproduto" class="form-control">
+
+                    {% for tipoprodutos in tipoproduto %}
+                        {% if produto.fktipoproduto|stringformat:"s" == tipoprodutos.descricao|stringformat:"s" %}
+                        <option value="{{tipoprodutos.id}}" >{{tipoprodutos.descricao}}</option>
+                        {% endif %}
+                    
+                    {% endfor %}
+
+                    {% for tipoprodutos in tipoproduto %}
+                    <option value="{{tipoprodutos.id}}">{{tipoprodutos.descricao}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+            
+
+            {%if video.is_visible%}
+            {%endif%}
+
+
+    
+            <br>
+            <br>
+        </form>
+        
+        <a href="/produto/produto/" class="btn btn-primary">Voltar</a>
+    </div>
+
+    
+    
+
+
+
+
+</body>
+</html>
